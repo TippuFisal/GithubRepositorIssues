@@ -56,8 +56,6 @@ class GithubIssuesActivity : AppCompatActivity() {
     private fun initAdapter(response: List<GithubIssuesResponse>){
         rvGithubList.apply {
             val linearLayoutManager = LinearLayoutManager(this@GithubIssuesActivity)
-            val decoration = DividerItemDecoration(applicationContext, StaggeredGridLayoutManager.VERTICAL)
-            addItemDecoration(decoration)
             layoutManager = linearLayoutManager
             val githubIsssueAdapter = GithubIsssueAdapter(response)
             adapter = githubIsssueAdapter

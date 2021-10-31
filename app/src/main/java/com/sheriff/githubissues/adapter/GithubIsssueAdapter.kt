@@ -22,8 +22,8 @@ class GithubIsssueAdapter(val data : List<GithubIssuesResponse>): RecyclerView.A
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.tvTitle.text = "Title : ${data[position].title}"
-        holder.tvDate.text = "Created At : ${Utils.calculateDateMonthYear(data[position].created_at)}"
+        holder.tvTitle.text = data[position].title
+        holder.tvDate.text = Utils.calculateDateMonthYear(data[position].created_at)
     }
 
     override fun getItemCount(): Int {
