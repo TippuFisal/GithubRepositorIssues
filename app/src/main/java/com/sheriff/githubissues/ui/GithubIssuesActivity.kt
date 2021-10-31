@@ -23,6 +23,7 @@ import java.text.SimpleDateFormat
 class GithubIssuesActivity : AppCompatActivity() {
 
     lateinit var githubIssuesViewModel: GithubIssuesViewModel
+
     companion object{
         val TAG = "MainActivity"
     }
@@ -62,27 +63,4 @@ class GithubIssuesActivity : AppCompatActivity() {
             adapter = githubIsssueAdapter
         }
     }
-
-
-
-
-
-//    // have to pass the time value as Epoch time.
-//
-//    private fun calculateDateMonth(time: String): String {
-//        var returnValue = ""
-//        val dateTime = DateTime((time.toLong()) * 1000L)
-//        val inputTime = inputFormat.parse(dateTime.toString())
-//        val convertDateMonth = outputFormat.format(inputTime!!)
-//        val timeInMilliseconds = outputFormat.parse(convertDateMonth)!!
-//        val mTime: Calendar = Calendar.getInstance()
-//        mTime.setTimeInMillis(timeInMilliseconds.time)
-//        val now = Calendar.getInstance()
-//        returnValue = when {
-//            now[Calendar.DATE] == mTime[Calendar.DATE] // check isToday
-//                    now[Calendar.DATE] - mTime[Calendar.DATE] == 1   // check Yesterday
-//            else -> convertDateMonth // Month and Date
-//        }
-//        return returnValue
-//    }
 }
