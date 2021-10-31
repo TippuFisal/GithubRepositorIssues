@@ -8,8 +8,12 @@ interface RetrofitInstance {
 
     companion object {
 
+        // Base Url
         var BASE_URL = "https://api.github.com"
 
+        /**
+         * getRetrofitInstance
+         */
         fun getRetrofitInstance(): Retrofit {
             return Retrofit.Builder()
                 .baseUrl(BASE_URL)

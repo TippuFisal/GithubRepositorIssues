@@ -12,36 +12,46 @@ import io.reactivex.schedulers.Schedulers
 
 class GithubIssuesViewModel : ViewModel() {
 
-    var githubIssuesList = MutableLiveData<List<GithubIssuesResponse>>()
+    var githubIssuesList = MutableLiveData<List<GithubIssuesResponse>>() // Live Data
 
     init {
         githubIssuesList = MutableLiveData()
     }
 
-    fun getGithubIssuesListObserver(): MutableLiveData<List<GithubIssuesResponse>>{
+    /**
+     * getGithubIssuesListObserver
+     */
+    fun getGithubIssuesListObserver(): MutableLiveData<List<GithubIssuesResponse>> {
         return githubIssuesList
     }
 
-    fun makeApiCall(){
-        val retrofitInstance = RetrofitInstance.getRetrofitInstance().create(RetrofitService::class.java)
+    /**
+     * makeApiCall
+     */
+    fun makeApiCall() {
+        val retrofitInstance =
+            RetrofitInstance.getRetrofitInstance().create(RetrofitService::class.java)
         retrofitInstance.getGithubIssues()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(getGithubIssueListObserverRx())
     }
 
+    /**
+     * getGithubIssueListObserverRx
+     */
     private fun getGithubIssueListObserverRx(): Observer<List<GithubIssuesResponse>> {
-        return object : Observer<List<GithubIssuesResponse>>{
+        return object : Observer<List<GithubIssuesResponse>> {
             override fun onSubscribe(d: Disposable) {
                 // onSubscribe
             }
 
             override fun onNext(githubIssuesResponse: List<GithubIssuesResponse>) {
-                githubIssuesList.postValue(githubIssuesResponse)
+                githubIssuesList.postValue(githubIssuesResponse) // we will get API response
             }
 
             override fun onError(e: Throwable) {
-                githubIssuesList.postValue(null)
+                githubIssuesList.postValue(null) // onError
             }
 
             override fun onComplete() {
