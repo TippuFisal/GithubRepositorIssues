@@ -11,7 +11,7 @@ class Utils {
         private val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
 
         @SuppressLint("SimpleDateFormat")
-        private val outputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
+        private val outputFormat = SimpleDateFormat("dd-MMM-yy")
 
         /**
          * calculateDateMonthYear

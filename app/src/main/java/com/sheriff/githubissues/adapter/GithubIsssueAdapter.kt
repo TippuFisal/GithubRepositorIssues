@@ -9,7 +9,7 @@ import com.sheriff.githubissues.R
 import com.sheriff.githubissues.model.response.GithubIssuesResponse
 import com.sheriff.githubissues.utility.Utils
 
-class GithubIsssueAdapter(val data: List<GithubIssuesResponse>) :
+class GithubIsssueAdapter(private val data: List<GithubIssuesResponse>) :
     RecyclerView.Adapter<GithubIsssueAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

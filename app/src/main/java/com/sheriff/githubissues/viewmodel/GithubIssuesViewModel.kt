@@ -12,11 +12,7 @@ import io.reactivex.schedulers.Schedulers
 
 class GithubIssuesViewModel : ViewModel() {
 
-    var githubIssuesList = MutableLiveData<List<GithubIssuesResponse>>() // Live Data
-
-    init {
-        githubIssuesList = MutableLiveData()
-    }
+    private val githubIssuesList:MutableLiveData<List<GithubIssuesResponse>> = MutableLiveData<List<GithubIssuesResponse>>() // Live Data
 
     /**
      * getGithubIssuesListObserver
@@ -29,9 +25,8 @@ class GithubIssuesViewModel : ViewModel() {
      * makeApiCall
      */
     fun makeApiCall() {
-        val retrofitInstance =
-            RetrofitInstance.getRetrofitInstance().create(RetrofitService::class.java)
-        retrofitInstance.getGithubIssues()
+        val retrofitInstance = RetrofitInstance.getRetrofitInstance().create(RetrofitService::class.java)
+        retrofitInstance.getGithubIssues("square","okhttp")
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(getGithubIssueListObserverRx())
@@ -43,7 +38,7 @@ class GithubIssuesViewModel : ViewModel() {
     private fun getGithubIssueListObserverRx(): Observer<List<GithubIssuesResponse>> {
         return object : Observer<List<GithubIssuesResponse>> {
             override fun onSubscribe(d: Disposable) {
-                // onSubscribe
+                // onSubscribe 1st
             }
 
             override fun onNext(githubIssuesResponse: List<GithubIssuesResponse>) {
@@ -55,7 +50,7 @@ class GithubIssuesViewModel : ViewModel() {
             }
 
             override fun onComplete() {
-                // onComplete
+                // onComplete 4th
             }
         }
     }
