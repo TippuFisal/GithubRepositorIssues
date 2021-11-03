@@ -1,6 +1,8 @@
 package com.sheriff.githubissues.ui
 
+import android.content.Context
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -19,6 +21,7 @@ class GithubIssuesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_github_issues)
+        validateUserInput()
         loadAPIData()
     }
 
@@ -39,7 +42,32 @@ class GithubIssuesActivity : AppCompatActivity() {
                     }
                 }
             })
-        githubIssuesViewModel.makeApiCall()
+    }
+
+    /**
+     * validateUserInput
+     */
+    private fun validateUserInput() {
+        btnGet.setOnClickListener {
+            val imm: InputMethodManager =
+                getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(btnGet.getWindowToken(), 0)
+
+            val ownerName = editOwnerName.text.toString()
+            val repositoryName = editRepositoryName.text.toString()
+            when {
+                ownerName.isEmpty() -> {
+                    Toast.makeText(this, "Enter Owner Name", Toast.LENGTH_SHORT).show()
+                }
+                repositoryName.isEmpty() -> {
+                    Toast.makeText(this, "Enter Repository Name", Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    githubIssuesViewModel.makeApiCall(ownerName, repositoryName)
+                }
+            }
+        }
+
     }
 
     /**

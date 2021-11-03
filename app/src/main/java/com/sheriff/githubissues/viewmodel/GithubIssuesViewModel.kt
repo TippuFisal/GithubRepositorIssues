@@ -24,9 +24,9 @@ class GithubIssuesViewModel : ViewModel() {
     /**
      * makeApiCall
      */
-    fun makeApiCall() {
+    fun makeApiCall(ownerName: String, repositoryName: String) {
         val retrofitInstance = RetrofitInstance.getRetrofitInstance().create(RetrofitService::class.java)
-        retrofitInstance.getGithubIssues("square","okhttp")
+        retrofitInstance.getGithubIssues(ownerName,repositoryName)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(getGithubIssueListObserverRx())
